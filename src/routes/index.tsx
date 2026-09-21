@@ -88,20 +88,23 @@ function Portfolio() {
     const saved = window.localStorage.getItem("sjk-theme");
     const next = saved === "light" ? "light" : "dark";
     setTheme(next);
-    document.documentElement.dataset.theme = next;
+    document.documentElement.dataset["theme"] = next;
   }, []);
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
-    const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id[0].toUpperCase() + entry.target.id.slice(1))), { rootMargin: "-35% 0px -55%", threshold: 0 });
+    const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      const firstCharacter = entry.target.id.charAt(0);
+      if (entry.isIntersecting && firstCharacter) setActive(firstCharacter.toUpperCase() + entry.target.id.slice(1));
+    }), { rootMargin: "-35% 0px -55%", threshold: 0 });
     navItems.forEach((item) => { const el = document.getElementById(item.toLowerCase()); if (el) sectionObserver.observe(el); });
     return () => { revealObserver.disconnect(); sectionObserver.disconnect(); };
   }, []);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
-    setTheme(next); document.documentElement.dataset.theme = next; window.localStorage.setItem("sjk-theme", next);
+    setTheme(next); document.documentElement.dataset["theme"] = next; window.localStorage.setItem("sjk-theme", next);
   };
   const scrollTo = (name: string) => { document.getElementById(name.toLowerCase())?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
   const activeSkills = useMemo(() => skillGroups[skillTab as keyof typeof skillGroups], [skillTab]);
@@ -210,9 +213,9 @@ function Portfolio() {
     <section id="contact" className="contact-section">
       <div className="contact-heading reveal"><p className="eyebrow">Let’s connect</p><h2>Have an idea worth building<span className="accent-dot">?</span></h2><p>If you’re working on an interesting project, have an opportunity, want to collaborate, or simply want to talk about technology, feel free to reach out.</p></div>
       <div className="contact-grid reveal">
-        <div className="contact-links"><h3>Find me here</h3>{[
-          [Mail, "Primary email", profile.primaryEmail], [Mail, "Alternate email", profile.alternateEmail], [Phone, "Phone", profile.phone], [Github, "GitHub", profile.github], [Linkedin, "LinkedIn", profile.linkedin], [MessageCircle, "Discord", profile.discord], [Instagram, "Instagram", profile.instagram],
-        ].map(([Icon, label, value]) => <div className="contact-row" key={String(label)}><Icon size={18}/><div><span>{String(label)}</span><strong>{String(value)}</strong></div>{label === "Primary email" ? <button className="icon-button" onClick={copyPlaceholder} aria-label="Copy primary email">{copied ? <Check /> : <Copy />}</button> : <SmartLink value={String(value)}><ExternalLink /></SmartLink>}</div>)}<SmartLink value={profile.resumeUrl} className="resume-wide"><Download /> Download resume</SmartLink></div>
+        <div className="contact-links"><h3>Find me here</h3>{([
+          { Icon: Mail, label: "Primary email", value: profile.primaryEmail }, { Icon: Mail, label: "Alternate email", value: profile.alternateEmail }, { Icon: Phone, label: "Phone", value: profile.phone }, { Icon: Github, label: "GitHub", value: profile.github }, { Icon: Linkedin, label: "LinkedIn", value: profile.linkedin }, { Icon: MessageCircle, label: "Discord", value: profile.discord }, { Icon: Instagram, label: "Instagram", value: profile.instagram },
+        ]).map(({ Icon, label, value }) => <div className="contact-row" key={label}><Icon size={18}/><div><span>{label}</span><strong>{value}</strong></div>{label === "Primary email" ? <button className="icon-button" onClick={copyPlaceholder} aria-label="Copy primary email">{copied ? <Check /> : <Copy />}</button> : <SmartLink value={value}><ExternalLink /></SmartLink>}</div>)}<SmartLink value={profile.resumeUrl} className="resume-wide"><Download /> Download resume</SmartLink></div>
         <form onSubmit={submitForm}><div className="form-head"><h3>Send a note</h3><span>Connection pending</span></div><label>Name<input name="name" autoComplete="name" required placeholder="Your name" /></label><label>Email<input type="email" name="email" autoComplete="email" required placeholder="you@example.com" /></label><label>Message<textarea name="message" required rows={5} placeholder="Tell me what you're thinking..." /></label><button className="primary-button" type="submit">Send message <Send /></button>{formNotice && <p className="form-notice" role="status">{formNotice}</p>}</form>
       </div>
     </section>
