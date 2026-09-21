@@ -248,7 +248,7 @@ function Portfolio() {
           <span className="brand-mark">
             <span />
           </span>
-          <span>
+          <span className="nav-signature">
             SJK<span className="accent-dot">.</span>
           </span>
         </button>
