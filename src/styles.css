@@ -148,6 +148,13 @@ a {
   cursor: pointer;
   padding: 0;
 }
+.nav-signature {
+  font-family: "Amsterdam Four_ttf", cursive;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(1px);
+}
 .brand-mark {
   width: 18px;
   height: 18px;
