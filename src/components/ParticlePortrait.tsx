@@ -36,7 +36,10 @@ const DEFAULT_SPRING: SpringSettings = { stiffness: 0.035, damping: 0.88 };
 
 function parseHex(hex: string) {
   const normalized = hex.replace("#", "");
-  const value = Number.parseInt(normalized.length === 3 ? normalized.replace(/(.)/g, "$1$1") : normalized, 16);
+  const value = Number.parseInt(
+    normalized.length === 3 ? normalized.replace(/(.)/g, "$1$1") : normalized,
+    16,
+  );
   return {
     r: (value >> 16) & 255,
     g: (value >> 8) & 255,
@@ -151,10 +154,7 @@ export function ParticlePortrait({
         const light = luminance[index] ?? 0;
         const midtone = 1 - Math.abs(light - 0.5) * 2;
         const detail = edge[index] ?? 0;
-        const probability = Math.min(
-          0.96,
-          0.08 + detail * 0.72 + midtone * 0.25 + light * 0.18,
-        );
+        const probability = Math.min(0.96, 0.08 + detail * 0.72 + midtone * 0.25 + light * 0.18);
         if (Math.random() < probability) selected.add(index);
       }
 
@@ -207,7 +207,8 @@ export function ParticlePortrait({
       context.globalCompositeOperation = "lighter";
       const pointer = pointerRef.current;
       const radiusSquared = interactionRadius * interactionRadius;
-      const spring = typeof returnSpeed === "number" ? returnSpeed : (returnSpeed.stiffness ?? 0.035);
+      const spring =
+        typeof returnSpeed === "number" ? returnSpeed : (returnSpeed.stiffness ?? 0.035);
       const damping = typeof returnSpeed === "number" ? 0.88 : (returnSpeed.damping ?? 0.88);
       const driftTime = time * animationSpeed;
 
@@ -281,7 +282,16 @@ export function ParticlePortrait({
       canvas.removeEventListener("pointerleave", clearPointer);
       canvas.removeEventListener("pointercancel", clearPointer);
     };
-  }, [animationSpeed, colors, imageSrc, interactionRadius, particleCount, particleSize, repulsionStrength, returnSpeed]);
+  }, [
+    animationSpeed,
+    colors,
+    imageSrc,
+    interactionRadius,
+    particleCount,
+    particleSize,
+    repulsionStrength,
+    returnSpeed,
+  ]);
 
   return (
     <div className={`particle-portrait ${className}`}>
