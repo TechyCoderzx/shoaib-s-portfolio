@@ -32,6 +32,7 @@ type Particle = {
 
 const DEFAULT_COLORS = ["#24245f", "#51318d", "#7d40ce", "#ae4add", "#e45acb"];
 const ACCENTS = ["#4de9ff", "#ff4ecb"];
+const DEFAULT_SPRING: SpringSettings = { stiffness: 0.035, damping: 0.88 };
 
 function parseHex(hex: string) {
   const normalized = hex.replace("#", "");
@@ -55,7 +56,7 @@ export function ParticlePortrait({
   particleSize = 1,
   interactionRadius = 145,
   repulsionStrength = 1.35,
-  returnSpeed = { stiffness: 0.035, damping: 0.88 },
+  returnSpeed = DEFAULT_SPRING,
   animationSpeed = 0.001,
   className = "",
 }: ParticlePortraitProps) {
@@ -111,24 +112,26 @@ export function ParticlePortrait({
       for (let index = 0; index < length; index += 1) {
         const pixel = index * 4;
         luminance[index] =
-          (pixels[pixel] * 0.2126 + pixels[pixel + 1] * 0.7152 + pixels[pixel + 2] * 0.0722) /
+          ((pixels[pixel] ?? 0) * 0.2126 +
+            (pixels[pixel + 1] ?? 0) * 0.7152 +
+            (pixels[pixel + 2] ?? 0) * 0.0722) /
           255;
-        alpha[index] = pixels[pixel + 3] / 255;
+        alpha[index] = (pixels[pixel + 3] ?? 0) / 255;
       }
 
       const edge = new Float32Array(length);
       for (let y = 1; y < sampleHeight - 1; y += 1) {
         for (let x = 1; x < sampleWidth - 1; x += 1) {
           const index = y * sampleWidth + x;
-          if (alpha[index] < 0.04) continue;
-          const topLeft = luminance[index - sampleWidth - 1];
-          const top = luminance[index - sampleWidth];
-          const topRight = luminance[index - sampleWidth + 1];
-          const left = luminance[index - 1];
-          const right = luminance[index + 1];
-          const bottomLeft = luminance[index + sampleWidth - 1];
-          const bottom = luminance[index + sampleWidth];
-          const bottomRight = luminance[index + sampleWidth + 1];
+          if ((alpha[index] ?? 0) < 0.04) continue;
+          const topLeft = luminance[index - sampleWidth - 1] ?? 0;
+          const top = luminance[index - sampleWidth] ?? 0;
+          const topRight = luminance[index - sampleWidth + 1] ?? 0;
+          const left = luminance[index - 1] ?? 0;
+          const right = luminance[index + 1] ?? 0;
+          const bottomLeft = luminance[index + sampleWidth - 1] ?? 0;
+          const bottom = luminance[index + sampleWidth] ?? 0;
+          const bottomRight = luminance[index + sampleWidth + 1] ?? 0;
           const gx = -topLeft + topRight - 2 * left + 2 * right - bottomLeft + bottomRight;
           const gy = -topLeft - 2 * top - topRight + bottomLeft + 2 * bottom + bottomRight;
           edge[index] = Math.min(1, Math.hypot(gx, gy) * 0.72);
@@ -144,12 +147,13 @@ export function ParticlePortrait({
         const x = 1 + Math.floor(Math.random() * (sampleWidth - 2));
         const y = 1 + Math.floor(Math.random() * (sampleHeight - 2));
         const index = y * sampleWidth + x;
-        if (selected.has(index) || alpha[index] < 0.08) continue;
-        const midtone = 1 - Math.abs(luminance[index] - 0.5) * 2;
-        const detail = edge[index];
+        if (selected.has(index) || (alpha[index] ?? 0) < 0.08) continue;
+        const light = luminance[index] ?? 0;
+        const midtone = 1 - Math.abs(light - 0.5) * 2;
+        const detail = edge[index] ?? 0;
         const probability = Math.min(
           0.96,
-          0.08 + detail * 0.72 + midtone * 0.25 + luminance[index] * 0.18,
+          0.08 + detail * 0.72 + midtone * 0.25 + light * 0.18,
         );
         if (Math.random() < probability) selected.add(index);
       }
@@ -160,8 +164,8 @@ export function ParticlePortrait({
       particlesRef.current = Array.from(selected, (index) => {
         const x = index % sampleWidth;
         const y = Math.floor(index / sampleWidth);
-        const light = luminance[index];
-        const detail = edge[index];
+        const light = luminance[index] ?? 0;
+        const detail = edge[index] ?? 0;
         const paletteIndex = Math.min(colors.length - 1, Math.floor(light * colors.length));
         const accent = Math.random() < 0.035 + detail * 0.045;
         const originalX = (x + (Math.random() - 0.5) * 0.8) * scaleX;
@@ -177,7 +181,9 @@ export function ParticlePortrait({
           vy: 0,
           size: particleSize * (0.55 + (1 - detail) * 0.72 + Math.random() * 0.35),
           baseOpacity: Math.min(0.98, 0.24 + light * 0.58 + detail * 0.18),
-          color: accent ? ACCENTS[Math.random() < 0.5 ? 0 : 1] : colors[paletteIndex],
+          color: accent
+            ? (ACCENTS[Math.random() < 0.5 ? 0 : 1] ?? "#ff4ecb")
+            : (colors[paletteIndex] ?? DEFAULT_COLORS[2] ?? "#7d40ce"),
           phase: Math.random() * Math.PI * 2 + now * animationSpeed,
         };
       });
