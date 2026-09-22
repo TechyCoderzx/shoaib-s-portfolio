@@ -32,6 +32,8 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import constellation from "../assets/neural-constellation.jpg";
+import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
+import { ParticlePortrait } from "../components/ParticlePortrait";
 import { isPlaceholder, portfolioConfig as profile } from "../lib/portfolio-config";
 
 export const Route = createFileRoute("/")({
@@ -347,11 +349,7 @@ function Portfolio() {
           title="I’m learning how good software gets built — then building it."
         />
         <div className="about-grid reveal">
-          <div className="portrait-placeholder" aria-label="Profile photo placeholder">
-            <div className="portrait-code">SJK</div>
-            <p>PROFILE_IMAGE_HERE</p>
-            <span>Add a portrait to complete this space</span>
-          </div>
+          <ParticlePortrait imageSrc={portraitAsset.url} />
           <div className="about-copy">
             <p className="large-copy">
               I am pursuing a Bachelor’s degree in Computer Science and Engineering at SRM
