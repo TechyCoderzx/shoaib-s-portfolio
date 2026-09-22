@@ -6,3 +6,5 @@
 - [x] Centralize missing profile, social, resume, media, and project details as placeholders
 - [x] Add SEO metadata, favicon, accessibility, reduced motion, and update instructions
 - [x] Validate desktop, mobile, dark theme, light theme, interactions, overflow, console, and build
+
+- [ ] Replace the About placeholder with the interactive particle portrait and validate it
