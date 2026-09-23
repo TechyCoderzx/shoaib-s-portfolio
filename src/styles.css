@@ -24,8 +24,7 @@
   --color-ring: var(--primary);
 }
 
-:root,
-:root[data-theme="dark"] {
+:root {
   --background: oklch(0 0 0);
   --foreground: oklch(0.98 0 0);
   --surface: oklch(0.09 0.008 285);
@@ -43,30 +42,6 @@
     linear-gradient(90deg, oklch(0 0 0) 0%, oklch(0 0 0 / 0.96) 38%, transparent 72%),
     linear-gradient(0deg, oklch(0 0 0) 0%, transparent 42%);
 }
-:root[data-theme="light"] {
-  --background: oklch(0.965 0.008 290);
-  --foreground: oklch(0.15 0.015 285);
-  --surface: oklch(0.995 0.003 290);
-  --surface-alt: oklch(0.925 0.012 290);
-  --muted-foreground: oklch(0.43 0.018 285);
-  --border: oklch(0.81 0.02 290);
-  --primary: oklch(0.53 0.23 292);
-  --primary-foreground: oklch(0.99 0 0);
-  --accent: oklch(0.7 0.16 70);
-  --accent-foreground: oklch(0.18 0.025 70);
-  --verdant: oklch(0.48 0.12 171);
-  --grid: oklch(0.2 0.02 285 / 0.07);
-  --nav: oklch(0.97 0.008 290 / 0.88);
-  --hero-mask:
-    linear-gradient(
-      90deg,
-      oklch(0.965 0.008 290) 0%,
-      oklch(0.965 0.008 290 / 0.97) 39%,
-      transparent 72%
-    ),
-    linear-gradient(0deg, oklch(0.965 0.008 290) 0%, transparent 45%);
-}
-
 * {
   box-sizing: border-box;
   border-color: var(--border);
@@ -205,7 +180,6 @@ a {
   align-items: center;
   gap: 6px;
 }
-.icon-button,
 .menu-button {
   width: 38px;
   height: 38px;
@@ -217,12 +191,10 @@ a {
   place-items: center;
   cursor: pointer;
 }
-.icon-button svg,
 .menu-button svg {
   width: 16px;
   height: 16px;
 }
-.icon-button:hover,
 .menu-button:hover {
   background: var(--surface-alt);
 }
@@ -297,21 +269,16 @@ a {
   overflow: hidden;
   padding: 132px max(24px, calc((100vw - 1280px) / 2)) 42px;
 }
-.hero-art {
+.hero-art-canvas {
   position: absolute;
   z-index: 0;
-  inset: 0 0 auto auto;
+  inset: 0;
   width: 76%;
   height: 92%;
-  object-fit: cover;
-  object-position: right top;
   mix-blend-mode: screen;
   opacity: 0.96;
-}
-[data-theme="light"] .hero-art {
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  filter: saturate(1.15) contrast(1.05);
+  margin-left: auto;
+  pointer-events: none;
 }
 .hero-shade {
   position: absolute;
@@ -345,14 +312,12 @@ a {
 }
 .hero h1 {
   margin: 28px 0 38px;
-  font-size: clamp(4.7rem, 10.6vw, 9.6rem);
-  line-height: 0.81;
+  font-family: "Brittany Signature", cursive;
+  font-size: clamp(4.8rem, 10.4vw, 9.4rem);
+  line-height: 0.94;
   font-weight: 400;
-  letter-spacing: 0;
-  max-width: 1020px;
-}
-.hero h1 span {
-  display: block;
+  letter-spacing: 0.015em;
+  max-width: 1180px;
 }
 .hero-bottom {
   display: grid;
@@ -1343,7 +1308,7 @@ footer > div:first-child p,
   .nav-resume {
     display: none;
   }
-  .hero-art {
+  .hero-art-canvas {
     width: 100%;
     height: 70%;
     opacity: 0.7;
@@ -1430,13 +1395,13 @@ footer > div:first-child p,
     padding: 104px 20px 34px;
     align-items: flex-end;
   }
-  .hero-art {
+  .hero-art-canvas {
     height: 52%;
     top: 0;
-    object-position: 68% top;
   }
   .hero h1 {
-    font-size: clamp(4rem, 20vw, 6rem);
+    font-size: clamp(3.85rem, 18vw, 5.8rem);
+    line-height: 1;
     margin-top: 20px;
   }
   .hero-role {
