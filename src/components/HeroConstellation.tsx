@@ -23,9 +23,7 @@ function getColor(red: number, green: number, blue: number) {
   if (red > blue * 1.16 && red > green * 1.08) return STAR_COLORS[4] ?? "#ffad72";
   if (blue > red * 1.2 && green > red * 1.05) return STAR_COLORS[3] ?? "#64cfff";
   if (red + green + blue > 640) return STAR_COLORS[0] ?? "#f8f6ff";
-  return Math.random() > 0.58
-    ? (STAR_COLORS[1] ?? "#9f7cff")
-    : (STAR_COLORS[2] ?? "#7252ff");
+  return Math.random() > 0.58 ? (STAR_COLORS[1] ?? "#9f7cff") : (STAR_COLORS[2] ?? "#7252ff");
 }
 
 export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
