@@ -21,18 +21,17 @@ import {
   Mail,
   Menu,
   MessageCircle,
-  Moon,
   Network,
   Phone,
   Play,
   Send,
-  Sun,
   Terminal,
   X,
 } from "lucide-react";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import constellation from "../assets/neural-constellation.jpg";
 import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
+import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
 import { isPlaceholder, portfolioConfig as profile } from "../lib/portfolio-config";
 
@@ -176,20 +175,12 @@ function SectionHeading({
 }
 
 function Portfolio() {
-  const [theme, setTheme] = useState("dark");
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("Home");
   const [skillTab, setSkillTab] = useState("Languages");
   const [caseOpen, setCaseOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [formNotice, setFormNotice] = useState("");
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("sjk-theme");
-    const next = saved === "light" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.dataset["theme"] = next;
-  }, []);
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver(
@@ -219,12 +210,6 @@ function Portfolio() {
     };
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.dataset["theme"] = next;
-    window.localStorage.setItem("sjk-theme", next);
-  };
   const scrollTo = (name: string) => {
     document.getElementById(name.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
@@ -267,14 +252,6 @@ function Portfolio() {
         </div>
         <div className="nav-actions">
           <button
-            className="icon-button"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            title="Change theme"
-          >
-            {theme === "dark" ? <Sun /> : <Moon />}
-          </button>
-          <button
             className="menu-button"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle navigation"
@@ -288,25 +265,13 @@ function Portfolio() {
       </nav>
 
       <section id="home" className="hero">
-        <img
-          src={constellation}
-          className="hero-art"
-          width={1400}
-          height={1100}
-          alt="Abstract violet and amber neural constellation"
-          fetchPriority="high"
-        />
+        <HeroConstellation imageSrc={constellation} />
         <div className="hero-shade" />
         <div className="hero-content">
           <div className="hero-kicker">
             <span className="status-dot" /> Available to learn, build & collaborate
           </div>
-          <h1>
-            <span>Shoaib</span>
-            <span>
-              Junaid Khan<span className="accent-dot">.</span>
-            </span>
-          </h1>
+          <h1>Shoaib Junaid Khan</h1>
           <div className="hero-bottom">
             <div className="hero-role">
               <p>Computer Science Undergraduate</p>
