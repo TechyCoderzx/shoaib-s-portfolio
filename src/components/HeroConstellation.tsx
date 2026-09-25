@@ -128,6 +128,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       buildStars();
+      if (reducedMotion && image.complete && image.naturalWidth > 0) draw();
     };
 
     const updatePointer = (event: PointerEvent) => {
@@ -195,19 +196,20 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       context.shadowBlur = 0;
       context.globalAlpha = 1;
       context.globalCompositeOperation = "source-over";
-      if (!disposed) frame = requestAnimationFrame(draw);
+      if (!disposed && !reducedMotion) frame = requestAnimationFrame(draw);
     };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
-    window.addEventListener("pointermove", updatePointer, { passive: true });
+    if (!reducedMotion) window.addEventListener("pointermove", updatePointer, { passive: true });
     image.onload = () => {
       resize();
       pointer.x = width / 2;
       pointer.y = height / 2;
       pointer.targetX = pointer.x;
       pointer.targetY = pointer.y;
-      frame = requestAnimationFrame(draw);
+      if (reducedMotion) draw();
+      else frame = requestAnimationFrame(draw);
     };
     image.src = imageSrc;
 
@@ -215,7 +217,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       disposed = true;
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
-      window.removeEventListener("pointermove", updatePointer);
+      if (!reducedMotion) window.removeEventListener("pointermove", updatePointer);
     };
   }, [imageSrc]);
 
