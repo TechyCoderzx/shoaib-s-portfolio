@@ -303,7 +303,6 @@ function Portfolio() {
         <div className="hero-meta">
           <span>SRM University–AP</span>
           <span>Andhra Pradesh, India</span>
-          <span>Portfolio / 2026</span>
         </div>
       </section>
 

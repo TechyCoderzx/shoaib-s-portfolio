@@ -312,13 +312,13 @@ a {
   box-shadow: 0 0 14px color-mix(in oklab, var(--verdant) 70%, transparent);
 }
 .hero h1 {
-  margin: 28px 0 38px;
+  margin: 24px 0 34px;
   font-family: "Brittany Signature", cursive;
-  font-size: clamp(4.25rem, calc(2.5rem + 6vi), 8.5rem);
-  line-height: 0.94;
+  font-size: clamp(3.25rem, calc(1.9rem + 4.5vi), 6.25rem);
+  line-height: 0.96;
   font-weight: 400;
   letter-spacing: 0.015em;
-  max-width: min(100%, 73.75rem);
+  max-width: min(100%, 56.25rem);
   overflow-wrap: anywhere;
 }
 .hero-bottom {
@@ -353,15 +353,19 @@ a {
 .hero-meta {
   position: absolute;
   z-index: 2;
-  right: max(24px, calc((100vw - 1280px) / 2));
-  bottom: 43px;
+  right: 24px;
+  bottom: 28px;
   display: flex;
   writing-mode: vertical-rl;
-  gap: 20px;
+  gap: 18px;
   font-family: var(--font-mono);
   font-size: 9px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--muted-foreground);
+}
+.hero-meta span {
+  padding-top: 4px;
 }
 
 .page-section {
@@ -1402,7 +1406,7 @@ footer > div:first-child p,
     top: 0;
   }
   .hero h1 {
-    font-size: clamp(3.25rem, calc(2.25rem + 8vi), 5.8rem);
+    font-size: clamp(2.75rem, calc(1.9rem + 6.5vi), 4.6rem);
     line-height: 1;
     margin-top: 20px;
   }
