@@ -311,6 +311,9 @@ a {
   border-radius: 50%;
   box-shadow: 0 0 14px color-mix(in oklab, var(--verdant) 70%, transparent);
 }
+.hero-kicker {
+  transform: translateY(-5px);
+}
 .hero h1 {
   margin: 24px 0 34px;
   font-family: "Brittany Signature", cursive;
