@@ -47,6 +47,7 @@
   border-color: var(--border);
 }
 html {
+  font-size: 100%;
   scroll-behavior: smooth;
   background: var(--background);
 }
@@ -313,11 +314,12 @@ a {
 .hero h1 {
   margin: 28px 0 38px;
   font-family: "Brittany Signature", cursive;
-  font-size: clamp(4.8rem, 10.4vw, 9.4rem);
+  font-size: clamp(4.25rem, calc(2.5rem + 6vi), 8.5rem);
   line-height: 0.94;
   font-weight: 400;
   letter-spacing: 0.015em;
-  max-width: 1180px;
+  max-width: min(100%, 73.75rem);
+  overflow-wrap: anywhere;
 }
 .hero-bottom {
   display: grid;
@@ -1400,7 +1402,7 @@ footer > div:first-child p,
     top: 0;
   }
   .hero h1 {
-    font-size: clamp(3.85rem, 18vw, 5.8rem);
+    font-size: clamp(3.25rem, calc(2.25rem + 8vi), 5.8rem);
     line-height: 1;
     margin-top: 20px;
   }

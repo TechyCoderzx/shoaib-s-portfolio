@@ -71,7 +71,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       const drawHeight = image.naturalHeight * scale;
       sourceContext.drawImage(image, sampleWidth - drawWidth, 0, drawWidth, drawHeight);
       const pixels = sourceContext.getImageData(0, 0, sampleWidth, sampleHeight).data;
-      const target = width < 600 || cores <= 4 ? 900 : width < 900 ? 1500 : 2300;
+      const target = width < 600 || cores <= 4 ? 650 : width < 900 ? 1000 : 1400;
       const candidates: Array<{ x: number; y: number; value: number; color: string }> = [];
       const step = width < 600 ? 3 : 2;
 
@@ -128,6 +128,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       buildStars();
+      if (reducedMotion && image.complete && image.naturalWidth > 0) draw();
     };
 
     const updatePointer = (event: PointerEvent) => {
@@ -188,26 +189,30 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
         context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         context.fillStyle = star.color;
         context.globalAlpha = star.alpha;
-        context.shadowColor = star.color;
-        context.shadowBlur = star.radius > 1.35 ? 7 : 3;
         context.fill();
+        if (star.radius > 1.5) {
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius * 2.8, 0, Math.PI * 2);
+          context.globalAlpha = star.alpha * 0.1;
+          context.fill();
+        }
       }
-      context.shadowBlur = 0;
       context.globalAlpha = 1;
       context.globalCompositeOperation = "source-over";
-      if (!disposed) frame = requestAnimationFrame(draw);
+      if (!disposed && !reducedMotion) frame = requestAnimationFrame(draw);
     };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
-    window.addEventListener("pointermove", updatePointer, { passive: true });
+    if (!reducedMotion) window.addEventListener("pointermove", updatePointer, { passive: true });
     image.onload = () => {
       resize();
       pointer.x = width / 2;
       pointer.y = height / 2;
       pointer.targetX = pointer.x;
       pointer.targetY = pointer.y;
-      frame = requestAnimationFrame(draw);
+      if (reducedMotion) draw();
+      else frame = requestAnimationFrame(draw);
     };
     image.src = imageSrc;
 
@@ -215,7 +220,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       disposed = true;
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
-      window.removeEventListener("pointermove", updatePointer);
+      if (!reducedMotion) window.removeEventListener("pointermove", updatePointer);
     };
   }, [imageSrc]);
 
