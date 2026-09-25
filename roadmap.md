@@ -8,4 +8,4 @@
 - [x] Validate desktop, mobile, dark theme, interactions, overflow, console, and build
 
 - [x] Replace the About placeholder with the interactive particle portrait and validate it
-- [ ] Add the interactive hero constellation, lock dark mode, and validate accessible signature typography
+- [x] Add the interactive hero constellation, lock dark mode, and validate accessible signature typography
