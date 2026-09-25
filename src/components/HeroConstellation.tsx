@@ -71,7 +71,7 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
       const drawHeight = image.naturalHeight * scale;
       sourceContext.drawImage(image, sampleWidth - drawWidth, 0, drawWidth, drawHeight);
       const pixels = sourceContext.getImageData(0, 0, sampleWidth, sampleHeight).data;
-      const target = width < 600 || cores <= 4 ? 900 : width < 900 ? 1500 : 2300;
+      const target = width < 600 || cores <= 4 ? 650 : width < 900 ? 1000 : 1400;
       const candidates: Array<{ x: number; y: number; value: number; color: string }> = [];
       const step = width < 600 ? 3 : 2;
 
@@ -189,11 +189,14 @@ export function HeroConstellation({ imageSrc }: HeroConstellationProps) {
         context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         context.fillStyle = star.color;
         context.globalAlpha = star.alpha;
-        context.shadowColor = star.color;
-        context.shadowBlur = star.radius > 1.35 ? 7 : 3;
         context.fill();
+        if (star.radius > 1.5) {
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius * 2.8, 0, Math.PI * 2);
+          context.globalAlpha = star.alpha * 0.1;
+          context.fill();
+        }
       }
-      context.shadowBlur = 0;
       context.globalAlpha = 1;
       context.globalCompositeOperation = "source-over";
       if (!disposed && !reducedMotion) frame = requestAnimationFrame(draw);
