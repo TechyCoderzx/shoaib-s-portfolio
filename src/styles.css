@@ -1412,6 +1412,11 @@ footer > div:first-child p,
     font-size: clamp(2.75rem, calc(1.9rem + 6.5vi), 4.6rem);
     line-height: 1;
     margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .hero-kicker {
+    transform: none;
   }
   .hero-role {
     font-size: 19px;
