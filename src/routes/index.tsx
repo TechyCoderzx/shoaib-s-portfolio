@@ -812,6 +812,25 @@ function Portfolio() {
             SJK<span className="accent-dot">.</span>
           </button>
           <p>Building, learning, and occasionally breaking things.</p>
+          <div className="social-links">
+            {[
+              { Icon: Github, label: "GitHub", href: profile.github },
+              { Icon: Linkedin, label: "LinkedIn", href: profile.linkedin },
+              { Icon: Instagram, label: "Instagram", href: profile.instagram },
+            ].map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                className="social-link"
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                title={label}
+              >
+                <Icon size={16} />
+              </a>
+            ))}
+          </div>
         </div>
         <div className="footer-links">
           {navItems.slice(1).map((item) => (
