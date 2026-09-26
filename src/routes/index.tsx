@@ -126,6 +126,7 @@ function SmartLink({
   download?: boolean;
 }) {
   const unavailable = isPlaceholder(value) || value.startsWith("/assets/");
+  const isDirect = value.startsWith("mailto:") || value.startsWith("tel:");
   return unavailable ? (
     <button
       className={`action-link is-disabled ${className}`}
@@ -136,12 +137,16 @@ function SmartLink({
       {children}
       <span className="availability">Soon</span>
     </button>
+  ) : isDirect ? (
+    <a className={`action-link ${className}`} href={value}>
+      {children}
+    </a>
   ) : (
     <a
       className={`action-link ${className}`}
       href={value}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       download={download}
     >
       {children}
@@ -730,35 +735,72 @@ function Portfolio() {
           <div className="contact-links">
             <h3>Find me here</h3>
             {[
-              { Icon: Mail, label: "Primary email", value: profile.primaryEmail },
-              { Icon: Mail, label: "Alternate email", value: profile.alternateEmail },
-              { Icon: Phone, label: "Phone", value: profile.phone },
-              { Icon: Github, label: "GitHub", value: profile.github },
-              { Icon: Linkedin, label: "LinkedIn", value: profile.linkedin },
-              { Icon: MessageCircle, label: "Discord", value: profile.discord },
-              { Icon: Instagram, label: "Instagram", value: profile.instagram },
-            ].map(({ Icon, label, value }) => (
-              <div className="contact-row" key={label}>
-                <Icon size={18} />
-                <div>
-                  <span>{label}</span>
-                  <strong>{value}</strong>
+              {
+                Icon: Mail,
+                label: "Primary email",
+                value: profile.primaryEmail,
+                href: `mailto:${profile.primaryEmail}`,
+              },
+              {
+                Icon: Mail,
+                label: "Alternate email",
+                value: profile.alternateEmail,
+                href: `mailto:${profile.alternateEmail}`,
+              },
+              {
+                Icon: Phone,
+                label: "Phone",
+                value: profile.phone,
+                href: `tel:${profile.phone.replace(/[^+\d]/g, "")}`,
+              },
+              { Icon: Github, label: "GitHub", value: profile.github, href: profile.github },
+              { Icon: Linkedin, label: "LinkedIn", value: profile.linkedin, href: profile.linkedin },
+              { Icon: MessageCircle, label: "Discord", value: profile.discord, href: profile.discord },
+              {
+                Icon: Instagram,
+                label: "Instagram",
+                value: profile.instagram,
+                href: profile.instagram,
+              },
+            ].map(({ Icon, label, value, href }) => {
+              const isDirect = href.startsWith("mailto:") || href.startsWith("tel:");
+              return (
+                <div className="contact-row" key={label}>
+                  <Icon size={18} />
+                  <div>
+                    <span>{label}</span>
+                    <strong>
+                      {isPlaceholder(href) ? (
+                        value
+                      ) : (
+                        <a
+                          className="contact-value-link"
+                          href={href}
+                          {...(isDirect
+                            ? {}
+                            : { target: "_blank", rel: "noopener noreferrer" })}
+                        >
+                          {value}
+                        </a>
+                      )}
+                    </strong>
+                  </div>
+                  {label === "Primary email" ? (
+                    <button
+                      className="icon-button"
+                      onClick={copyPlaceholder}
+                      aria-label="Copy primary email"
+                    >
+                      {copied ? <Check /> : <Copy />}
+                    </button>
+                  ) : (
+                    <SmartLink value={href}>
+                      <ExternalLink />
+                    </SmartLink>
+                  )}
                 </div>
-                {label === "Primary email" ? (
-                  <button
-                    className="icon-button"
-                    onClick={copyPlaceholder}
-                    aria-label="Copy primary email"
-                  >
-                    {copied ? <Check /> : <Copy />}
-                  </button>
-                ) : (
-                  <SmartLink value={value}>
-                    <ExternalLink />
-                  </SmartLink>
-                )}
-              </div>
-            ))}
+              );
+            })}
             <SmartLink value={profile.resumeUrl} className="resume-wide">
               <Download /> Download resume
             </SmartLink>
@@ -823,7 +865,7 @@ function Portfolio() {
                 className="social-link"
                 href={href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={label}
                 title={label}
               >

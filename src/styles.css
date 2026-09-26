@@ -1174,6 +1174,15 @@ a {
   font-weight: 400;
   overflow-wrap: anywhere;
 }
+.contact-value-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.contact-value-link:hover,
+.contact-value-link:focus-visible {
+  color: var(--accent);
+}
 .contact-row .action-link {
   width: 38px;
   min-height: 38px;
