@@ -762,28 +762,45 @@ function Portfolio() {
                 value: profile.instagram,
                 href: profile.instagram,
               },
-            ].map(({ Icon, label, value, href }) => (
-              <div className="contact-row" key={label}>
-                <Icon size={18} />
-                <div>
-                  <span>{label}</span>
-                  <strong>{value}</strong>
+            ].map(({ Icon, label, value, href }) => {
+              const isDirect = href.startsWith("mailto:") || href.startsWith("tel:");
+              return (
+                <div className="contact-row" key={label}>
+                  <Icon size={18} />
+                  <div>
+                    <span>{label}</span>
+                    <strong>
+                      {isPlaceholder(href) ? (
+                        value
+                      ) : (
+                        <a
+                          className="contact-value-link"
+                          href={href}
+                          {...(isDirect
+                            ? {}
+                            : { target: "_blank", rel: "noopener noreferrer" })}
+                        >
+                          {value}
+                        </a>
+                      )}
+                    </strong>
+                  </div>
+                  {label === "Primary email" ? (
+                    <button
+                      className="icon-button"
+                      onClick={copyPlaceholder}
+                      aria-label="Copy primary email"
+                    >
+                      {copied ? <Check /> : <Copy />}
+                    </button>
+                  ) : (
+                    <SmartLink value={href}>
+                      <ExternalLink />
+                    </SmartLink>
+                  )}
                 </div>
-                {label === "Primary email" ? (
-                  <button
-                    className="icon-button"
-                    onClick={copyPlaceholder}
-                    aria-label="Copy primary email"
-                  >
-                    {copied ? <Check /> : <Copy />}
-                  </button>
-                ) : (
-                  <SmartLink value={href}>
-                    <ExternalLink />
-                  </SmartLink>
-                )}
-              </div>
-            ))}
+              );
+            })}
             <SmartLink value={profile.resumeUrl} className="resume-wide">
               <Download /> Download resume
             </SmartLink>
