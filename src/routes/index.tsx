@@ -341,8 +341,8 @@ function Portfolio() {
         <SectionHeading
           index="02"
           eyebrow="Working knowledge"
-          title="Tools I use. Areas I’m growing into."
-          copy="No percentages or inflated proficiency — just the technologies and fundamentals shaping what I build next."
+          title="The Direction Ahead."
+          copy="Exploring technologies and ideas that shape what comes next."
         />
         <div className="skill-interface reveal">
           <div className="skill-tabs" role="tablist" aria-label="Skill categories">
