@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
 
 const navItems = ["Home", "About", "Skills", "Projects", "Experience", "Education", "Contact"];
 const skillGroups = {
-  Languages: ["C", "C++", "Java", "Python", "JavaScript"],
+  Languages: ["C", "C++", "Java"],
   Development: [
     "HTML",
     "CSS",
