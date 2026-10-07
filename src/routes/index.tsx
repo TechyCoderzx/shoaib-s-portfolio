@@ -60,7 +60,16 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const navItems = ["Home", "About", "Skills", "Projects", "Experience", "Education", "Contact"];
+const navItems = [
+  "Home",
+  "About",
+  "Skills",
+  "Projects",
+  "Experience",
+  "Achievements",
+  "Education",
+  "Contact",
+];
 const skillGroups = {
   Languages: ["C", "C++", "Java"],
   Development: [
