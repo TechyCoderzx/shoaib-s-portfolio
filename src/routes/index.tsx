@@ -80,7 +80,6 @@ const skillGroups = {
     "Software Design",
     "Computer Networks",
   ],
-  Tools: ["Git", "GitHub", "VS Code", "Figma", "Linux"],
 };
 const architecture = [
   "DC Motor",
