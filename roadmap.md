@@ -9,3 +9,4 @@
 
 - [x] Replace the About placeholder with the interactive particle portrait and validate it
 - [x] Add the interactive hero constellation, lock dark mode, and validate accessible signature typography
+- [x] Add the Achievements section with placeholder entries and update the navigation order

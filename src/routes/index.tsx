@@ -60,7 +60,16 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const navItems = ["Home", "About", "Skills", "Projects", "Experience", "Education", "Contact"];
+const navItems = [
+  "Home",
+  "About",
+  "Skills",
+  "Projects",
+  "Experience",
+  "Achievements",
+  "Education",
+  "Contact",
+];
 const skillGroups = {
   Languages: ["C", "C++", "Java"],
   Development: [
@@ -654,8 +663,44 @@ function Portfolio() {
         </div>
       </section>
 
+      <section id="achievements" className="page-section">
+        <SectionHeading
+          index="06"
+          eyebrow="Achievements"
+          title="Milestones worth marking."
+          copy="Placeholders until every entry is verified — hackathon placements, awards, competitions, certifications, and other moments worth keeping."
+        />
+        <div className="achievements-grid reveal">
+          {profile.achievements.map((item, i) => {
+            const pending = isPlaceholder(item.title);
+            return (
+              <article
+                className={`achievement-card ${pending ? "is-pending" : "is-verified"}`}
+                key={item.category}
+              >
+                <div className="achievement-top">
+                  <span className="achievement-index">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="achievement-status">{item.status}</span>
+                </div>
+                <p className="eyebrow">{item.category}</p>
+                <h3>{item.title}</h3>
+                <p className="achievement-detail">{item.detail}</p>
+                <div className="achievement-foot">
+                  <span>{item.period}</span>
+                  <span>{pending ? "Proof to be linked" : "Proof"}</span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <p className="honest-note achievements-note">
+          <CircleDot /> Placeholders only — titles, dates, and proof links are filled in once each
+          achievement is confirmed.
+        </p>
+      </section>
+
       <section id="education" className="page-section education-section">
-        <SectionHeading index="06" eyebrow="Education" title="Foundations first." />
+        <SectionHeading index="07" eyebrow="Education" title="Foundations first." />
         <div className="education-card reveal">
           <div className="university-mark">
             <GraduationCap />
@@ -692,7 +737,7 @@ function Portfolio() {
 
       <section className="page-section developer-section">
         <SectionHeading
-          index="07"
+          index="08"
           eyebrow="Developer activity"
           title="The work continues between releases."
           copy="A live activity feed can be connected once a verified GitHub profile is provided. No contribution numbers are guessed here."
