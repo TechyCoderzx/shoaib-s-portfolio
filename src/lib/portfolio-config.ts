@@ -7,7 +7,6 @@ export const portfolioConfig = {
   phone: "+91 7760790902",
   github: "https://github.com/TechyCoderzx",
   linkedin: "https://www.linkedin.com/in/shoaib-junaid-khan/",
-  discord: "YOUR_DISCORD_URL",
   instagram: "https://www.instagram.com/sillymenow/",
   resumeUrl: "/assets/resume/Shoaib-Junaid-Khan-Resume.pdf",
   profileImage: "PROFILE_IMAGE_HERE",

@@ -20,7 +20,6 @@ import {
   Linkedin,
   Mail,
   Menu,
-  MessageCircle,
   Network,
   Phone,
   Play,
@@ -799,7 +798,6 @@ function Portfolio() {
               },
               { Icon: Github, label: "GitHub", value: profile.github, href: profile.github },
               { Icon: Linkedin, label: "LinkedIn", value: profile.linkedin, href: profile.linkedin },
-              { Icon: MessageCircle, label: "Discord", value: profile.discord, href: profile.discord },
               {
                 Icon: Instagram,
                 label: "Instagram",
