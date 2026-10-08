@@ -13,8 +13,8 @@ export const portfolioConfig = {
   pulseTrust: {
     image: "PULSETRUST_IMAGE_HERE",
     video: "PULSETRUST_VIDEO_HERE",
-    github: "PULSETRUST_GITHUB_URL",
-    demo: "PULSETRUST_DEMO_URL",
+    github: "https://github.com/Alcatraz234156/PulseTrust_",
+    demo: "https://www.youtube.com/watch?v=JskEbxxT7cM",
   },
   gameEngine: {
     image: "GAME_ENGINE_IMAGE_HERE",
