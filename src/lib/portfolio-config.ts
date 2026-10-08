@@ -8,7 +8,7 @@ export const portfolioConfig = {
   github: "https://github.com/TechyCoderzx",
   linkedin: "https://www.linkedin.com/in/shoaib-junaid-khan/",
   instagram: "https://www.instagram.com/sillymenow/",
-  resumeUrl: "/assets/resume/Shoaib-Junaid-Khan-Resume.pdf",
+  resumeUrl: "/__l5e/assets-v1/b910f528-efd8-4292-8e61-e4252e2bce68/Shoaib_Junaid_Khan_Resume.pdf",
   profileImage: "PROFILE_IMAGE_HERE",
   pulseTrust: {
     image: "PULSETRUST_IMAGE_HERE",

@@ -270,7 +270,7 @@ function Portfolio() {
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
-          <SmartLink value={profile.resumeUrl} className="nav-resume">
+          <SmartLink value={profile.resumeUrl} className="nav-resume" download>
             <Download /> Resume
           </SmartLink>
         </div>
@@ -304,7 +304,7 @@ function Portfolio() {
             <SmartLink value={profile.github}>
               <Github /> GitHub
             </SmartLink>
-            <SmartLink value={profile.resumeUrl}>
+            <SmartLink value={profile.resumeUrl} download>
               <Download /> Resume
             </SmartLink>
             <button className="action-link" onClick={() => scrollTo("Contact")}>
@@ -846,7 +846,7 @@ function Portfolio() {
                 </div>
               );
             })}
-            <SmartLink value={profile.resumeUrl} className="resume-wide">
+            <SmartLink value={profile.resumeUrl} className="resume-wide" download>
               <Download /> Download resume
             </SmartLink>
           </div>
