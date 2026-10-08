@@ -438,7 +438,7 @@ function Portfolio() {
                 <Github /> GitHub
               </SmartLink>
               <SmartLink value={profile.pulseTrust.demo}>
-                <Play /> Live demo
+                <Play /> Video demo
               </SmartLink>
               <button
                 className="primary-button"
