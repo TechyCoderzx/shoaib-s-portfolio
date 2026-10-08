@@ -20,7 +20,6 @@ import {
   Linkedin,
   Mail,
   Menu,
-  MessageCircle,
   Network,
   Phone,
   Play,
@@ -798,8 +797,12 @@ function Portfolio() {
                 href: `tel:${profile.phone.replace(/[^+\d]/g, "")}`,
               },
               { Icon: Github, label: "GitHub", value: profile.github, href: profile.github },
-              { Icon: Linkedin, label: "LinkedIn", value: profile.linkedin, href: profile.linkedin },
-              { Icon: MessageCircle, label: "Discord", value: profile.discord, href: profile.discord },
+              {
+                Icon: Linkedin,
+                label: "LinkedIn",
+                value: profile.linkedin,
+                href: profile.linkedin,
+              },
               {
                 Icon: Instagram,
                 label: "Instagram",
@@ -820,9 +823,7 @@ function Portfolio() {
                         <a
                           className="contact-value-link"
                           href={href}
-                          {...(isDirect
-                            ? {}
-                            : { target: "_blank", rel: "noopener noreferrer" })}
+                          {...(isDirect ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                         >
                           {value}
                         </a>
