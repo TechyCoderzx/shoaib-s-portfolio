@@ -719,18 +719,29 @@ function Portfolio() {
         </div>
         <div className="milestones reveal">
           <p className="eyebrow">Verified milestones</p>
-          <div>
-            {[
-              "Pursuing B.Tech CSE",
-              "Built PulseTrust_ with a team",
-              "Participated in BharatBuilds 2026",
-              "Building a C++ multiplayer game engine",
-            ].map((m, i) => (
-              <span key={m}>
-                <b>0{i + 1}</b>
-                {m}
-              </span>
-            ))}
+          <div className="milestones-two">
+            <span className="milestone-feature">
+              <b>01</b>
+              <MilestoneCarousel
+                slides={[
+                  { src: gdgCeremony.url, alt: "Award ceremony at the Google Solution Hunt Challenge" },
+                  { src: gdgGroup.url, alt: "Team Techbros holding the 3rd prize cheque" },
+                ]}
+              />
+              <strong className="milestone-title">3rd Place — Google Solution Hunt Challenge by GDG</strong>
+              <a
+                className="milestone-proof"
+                href="https://lnkd.in/p/d4kQwZuJ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Proof <ArrowUpRight />
+              </a>
+            </span>
+            <span>
+              <b>02</b>
+              Pursuing B.Tech CSE
+            </span>
           </div>
         </div>
       </section>
