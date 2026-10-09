@@ -1,3 +1,4 @@
+import { GitHubActivity } from "@/components/GitHubActivity";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
