@@ -33,6 +33,10 @@ import constellation from "../assets/neural-constellation.jpg";
 import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
 import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
+import { MilestoneCarousel } from "../components/MilestoneCarousel";
+import { ArrowUpRight } from "lucide-react";
+import gdgCeremony from "../assets/gdg-award-ceremony.png.asset.json";
+import gdgGroup from "../assets/gdg-group-photo.jpeg.asset.json";
 import { isPlaceholder, portfolioConfig as profile } from "../lib/portfolio-config";
 
 export const Route = createFileRoute("/")({
