@@ -672,35 +672,37 @@ function Portfolio() {
           index="06"
           eyebrow="Achievements"
           title="Milestones worth marking."
-          copy="Placeholders until every entry is verified — hackathon placements, awards, competitions, certifications, and other moments worth keeping."
         />
-        <div className="achievements-grid reveal">
-          {profile.achievements.map((item, i) => {
-            const pending = isPlaceholder(item.title);
-            return (
-              <article
-                className={`achievement-card ${pending ? "is-pending" : "is-verified"}`}
-                key={item.category}
-              >
-                <div className="achievement-top">
-                  <span className="achievement-index">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="achievement-status">{item.status}</span>
-                </div>
-                <p className="eyebrow">{item.category}</p>
-                <h3>{item.title}</h3>
-                <p className="achievement-detail">{item.detail}</p>
-                <div className="achievement-foot">
-                  <span>{item.period}</span>
-                  <span>{pending ? "Proof to be linked" : "Proof"}</span>
-                </div>
-              </article>
-            );
-          })}
+        <div className="achievements-grid achievements-two reveal">
+          <article className="achievement-card is-verified achievement-feature">
+            <div className="achievement-top">
+              <span className="achievement-index">01</span>
+            </div>
+            <p className="eyebrow">Achievement</p>
+            <MilestoneCarousel
+              slides={[
+                { src: gdgCeremony.url, alt: "Award ceremony at the Google Solution Hunt Challenge" },
+                { src: gdgGroup.url, alt: "Team Techbros holding the 3rd prize cheque" },
+              ]}
+            />
+            <h3>3rd Place — Google Solution Hunt Challenge by GDG</h3>
+            <a
+              className="milestone-proof"
+              href="https://lnkd.in/p/d4kQwZuJ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Proof <ArrowUpRight />
+            </a>
+          </article>
+          <article className="achievement-card is-verified">
+            <div className="achievement-top">
+              <span className="achievement-index">02</span>
+            </div>
+            <p className="eyebrow">Education</p>
+            <h3>Pursuing B.Tech CSE</h3>
+          </article>
         </div>
-        <p className="honest-note achievements-note">
-          <CircleDot /> Placeholders only — titles, dates, and proof links are filled in once each
-          achievement is confirmed.
-        </p>
       </section>
 
       <section id="education" className="page-section education-section">
@@ -723,29 +725,18 @@ function Portfolio() {
         </div>
         <div className="milestones reveal">
           <p className="eyebrow">Verified milestones</p>
-          <div className="milestones-two">
-            <span className="milestone-feature">
-              <b>01</b>
-              <MilestoneCarousel
-                slides={[
-                  { src: gdgCeremony.url, alt: "Award ceremony at the Google Solution Hunt Challenge" },
-                  { src: gdgGroup.url, alt: "Team Techbros holding the 3rd prize cheque" },
-                ]}
-              />
-              <strong className="milestone-title">3rd Place — Google Solution Hunt Challenge by GDG</strong>
-              <a
-                className="milestone-proof"
-                href="https://lnkd.in/p/d4kQwZuJ"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Proof <ArrowUpRight />
-              </a>
-            </span>
-            <span>
-              <b>02</b>
-              Pursuing B.Tech CSE
-            </span>
+          <div>
+            {[
+              "Pursuing B.Tech CSE",
+              "Built PulseTrust_ with a team",
+              "Participated in BharatBuilds 2026",
+              "Building a C++ multiplayer game engine",
+            ].map((m, i) => (
+              <span key={m}>
+                <b>0{i + 1}</b>
+                {m}
+              </span>
+            ))}
           </div>
         </div>
       </section>
