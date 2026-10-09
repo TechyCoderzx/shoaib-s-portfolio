@@ -1071,16 +1071,8 @@ a {
   color: var(--accent);
   margin-bottom: 22px;
 }
-.milestones > .milestones-two {
+.achievements-grid.achievements-two {
   grid-template-columns: 2fr 1fr;
-}
-.milestone-feature {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.milestone-feature b {
-  margin-bottom: 0;
 }
 .milestone-carousel {
   position: relative;
@@ -1766,13 +1758,11 @@ footer > div:first-child p,
     grid-column: 2;
     text-align: left;
   }
-  .milestones > div,
-  .milestones > .milestones-two {
-    grid-template-columns: 1fr;
+  .milestones > div {
+    grid-template-columns: 1fr 1fr;
   }
-  .milestones-two > span {
-    border-left: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+  .achievements-grid.achievements-two {
+    grid-template-columns: 1fr;
   }
   .achievements-grid {
     grid-template-columns: 1fr;
