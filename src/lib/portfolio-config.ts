@@ -21,49 +21,6 @@ export const portfolioConfig = {
     github: "GAME_ENGINE_GITHUB_URL",
     demo: "GAME_ENGINE_DEMO_URL",
   },
-  // Placeholders only — fill each field once the achievement is confirmed.
-  achievements: [
-    {
-      category: "Hackathon placements",
-      title: "HACKATHON_PLACEMENT_HERE",
-      detail: "ADD_PLACEMENT_DETAILS_HERE",
-      period: "YYYY_HERE",
-      evidence: "PROOF_URL_HERE",
-      status: "Awaiting details",
-    },
-    {
-      category: "Awards",
-      title: "AWARD_HERE",
-      detail: "ADD_AWARD_DETAILS_HERE",
-      period: "YYYY_HERE",
-      evidence: "PROOF_URL_HERE",
-      status: "Awaiting details",
-    },
-    {
-      category: "Competitions",
-      title: "COMPETITION_RESULT_HERE",
-      detail: "ADD_COMPETITION_DETAILS_HERE",
-      period: "YYYY_HERE",
-      evidence: "PROOF_URL_HERE",
-      status: "Awaiting details",
-    },
-    {
-      category: "Certifications",
-      title: "CERTIFICATION_HERE",
-      detail: "ADD_CERTIFICATION_DETAILS_HERE",
-      period: "YYYY_HERE",
-      evidence: "PROOF_URL_HERE",
-      status: "Awaiting details",
-    },
-    {
-      category: "Other milestones",
-      title: "MILESTONE_HERE",
-      detail: "ADD_MILESTONE_DETAILS_HERE",
-      period: "YYYY_HERE",
-      evidence: "PROOF_URL_HERE",
-      status: "Awaiting details",
-    },
-  ],
 } as const;
 
 export const isPlaceholder = (value: string) =>
