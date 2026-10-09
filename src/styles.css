@@ -1071,6 +1071,83 @@ a {
   color: var(--accent);
   margin-bottom: 22px;
 }
+.milestones > .milestones-two {
+  grid-template-columns: 2fr 1fr;
+}
+.milestone-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.milestone-feature b {
+  margin-bottom: 0;
+}
+.milestone-carousel {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.milestone-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.milestone-carousel img.is-active {
+  opacity: 1;
+}
+.milestone-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.milestone-dots button {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: color-mix(in oklab, var(--foreground) 40%, transparent);
+  transition: background 300ms ease, transform 300ms ease;
+}
+.milestone-dots button.is-active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+.milestone-title {
+  font-size: clamp(1rem, 0.9rem + 0.5vi, 1.25rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.milestone-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.milestone-proof svg {
+  width: 13px;
+  height: 13px;
+}
+.milestone-proof:hover {
+  color: var(--accent);
+}
 /* Achievements */
 .achievements-grid {
   display: grid;
@@ -1689,8 +1766,13 @@ footer > div:first-child p,
     grid-column: 2;
     text-align: left;
   }
-  .milestones > div {
-    grid-template-columns: 1fr 1fr;
+  .milestones > div,
+  .milestones > .milestones-two {
+    grid-template-columns: 1fr;
+  }
+  .milestones-two > span {
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
   .achievements-grid {
     grid-template-columns: 1fr;
