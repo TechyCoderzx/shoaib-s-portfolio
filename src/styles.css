@@ -1208,8 +1208,24 @@ a {
 .contribution-placeholder i.warm {
   background: color-mix(in oklab, var(--primary) 40%, var(--surface-alt));
 }
+.contribution-placeholder i.warm2 {
+  background: color-mix(in oklab, var(--primary) 70%, var(--surface-alt));
+}
 .contribution-placeholder i.hot {
   background: var(--primary);
+}
+.gh-activity {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.gh-live {
+  justify-self: start;
+}
+.gh-note {
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+  margin: 0;
 }
 
 .contact-section {

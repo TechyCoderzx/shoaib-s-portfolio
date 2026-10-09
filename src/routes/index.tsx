@@ -1,3 +1,4 @@
+import { GitHubActivity } from "@/components/GitHubActivity";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
@@ -739,7 +740,7 @@ function Portfolio() {
           index="08"
           eyebrow="Developer activity"
           title="The work continues between releases."
-          copy="A live activity feed can be connected once a verified GitHub profile is provided. No contribution numbers are guessed here."
+          copy="Live public activity from my GitHub profile. Activity updates automatically from GitHub."
         />
         <div className="activity-panel reveal">
           <div className="activity-copy">
@@ -749,14 +750,7 @@ function Portfolio() {
               <p>Repositories, experiments, and progress will live here.</p>
             </div>
           </div>
-          <div className="contribution-placeholder" aria-label="Decorative contribution grid">
-            {Array.from({ length: 84 }).map((_, i) => (
-              <i
-                key={i}
-                className={i % 11 === 0 || i % 17 === 0 ? "hot" : i % 5 === 0 ? "warm" : ""}
-              />
-            ))}
-          </div>
+          <GitHubActivity />
           <SmartLink value={profile.github}>
             Open GitHub <ExternalLink />
           </SmartLink>
