@@ -1988,3 +1988,8 @@ footer > div:first-child p,
     padding: 28px 0;
   }
 }
+@media (max-width: 1100px) {
+  .wildlens-project .project-body {
+    order: 0;
+  }
+}
