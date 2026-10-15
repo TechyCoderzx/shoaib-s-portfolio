@@ -16,10 +16,8 @@ export const portfolioConfig = {
     github: "https://github.com/Alcatraz234156/PulseTrust_",
     demo: "https://www.youtube.com/watch?v=JskEbxxT7cM",
   },
-  gameEngine: {
-    image: "GAME_ENGINE_IMAGE_HERE",
-    github: "GAME_ENGINE_GITHUB_URL",
-    demo: "GAME_ENGINE_DEMO_URL",
+  wildLens: {
+    github: "WILDLENS_GITHUB_URL",
   },
 } as const;
 
