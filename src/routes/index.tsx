@@ -36,6 +36,7 @@ import { ParticlePortrait } from "../components/ParticlePortrait";
 import { MilestoneCarousel } from "../components/MilestoneCarousel";
 import { ArrowUpRight } from "lucide-react";
 import gdgCeremony from "../assets/gdg-award-ceremony.png.asset.json";
+import wildlensPhoto from "../assets/wildlens-peafowl.jpg";
 import gdgGroup from "../assets/gdg-group-photo.jpeg.asset.json";
 import { isPlaceholder, portfolioConfig as profile } from "../lib/portfolio-config";
 
@@ -536,54 +537,107 @@ function Portfolio() {
             </div>
           </div>
         )}
-        <article className="secondary-project reveal">
+        <article className="secondary-project wildlens-project reveal">
           <div className="project-body">
             <div className="project-number">PROJECT / 002</div>
-            <div className="status-label building">
-              <span className="status-dot" /> Building
+            <div className="status-label wildlens-status">
+              <span className="status-dot" /> Hackathon project / Built
             </div>
-            <h3>
-              C++ Multiplayer
-              <br />
-              Game Engine
-            </h3>
+            <div className="wildlens-category">AI / Nature exploration</div>
+            <h3>WildLens</h3>
+            <p className="wildlens-tagline">Discover the wild. Understand what you see.</p>
             <p>
-              A C++-based multiplayer game engine project focused on understanding networking, game
-              architecture, object-oriented design, and real-time systems.
+              WildLens transforms nature photography into an interactive learning experience.
+              Identify birds, insects, and plants, explore the visual evidence behind predictions,
+              compare similar species, and discover what to observe next. Built around open-weight
+              AI and privacy-conscious inference, WildLens makes exploring the natural world more
+              informative and accessible.
             </p>
-            <p className="honest-note">
-              <CircleDot /> Under construction — capabilities will be documented as they are
-              implemented.
-            </p>
+            <p className="wildlens-context">Built for the Hacktoberfest Open-Source AI Challenge.</p>
+            <ul className="wildlens-features">
+              {[
+                ["Evidence-first identification", "Shows the visual clues behind a suggestion."],
+                ["Lookalike Detective", "Explore similar species and how they differ."],
+                ["Observe Next", "Details to inspect to learn more about the subject."],
+                ["Privacy-conscious AI", "Open-weight models with local inference where supported."],
+              ].map(([title, detail]) => (
+                <li key={title}>
+                  <b>{title}</b>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
             <div className="tag-list">
               {[
-                "C++",
-                "Object-Oriented Programming",
-                "Networking",
-                "Game Architecture",
-                "Data Structures",
-                "Real-Time Systems",
+                "AI / Computer Vision",
+                "Python",
+                "FastAPI",
+                "React",
+                "Vite",
+                "Ollama",
+                "Open-Weight Models",
+                "ElevenLabs",
               ].map((tech) => (
                 <span key={tech}>{tech}</span>
               ))}
             </div>
+            <div className="project-actions">
+              <SmartLink value={profile.wildLens.github}>
+                <Github /> GitHub
+              </SmartLink>
+            </div>
           </div>
-          <div className="engine-visual">
-            <div className="engine-window">
+          <div className="engine-visual wildlens-visual" aria-label="Illustrative WildLens interface preview">
+            <div className="wl-app">
               <div className="window-bar">
                 <i />
                 <i />
                 <i />
-                <span>engine.cpp</span>
+                <span>wildlens / identify</span>
               </div>
-              <pre>
-                <code>{`class MultiplayerEngine {\n  NetworkLayer network;\n  WorldState world;\n\n  void build() {\n    // learning in progress_\n  }\n};`}</code>
-              </pre>
-              <div className="construction-line">
-                <span /> BUILDING / NO RELEASE YET
+              <div className="wl-photo">
+                <img src={wildlensPhoto} alt="Indian Peafowl perched on a branch" loading="lazy" />
+                <div className="wl-upload">
+                  <span>Upload photo</span>
+                  <span>Camera</span>
+                </div>
+              </div>
+              <div className="wl-result">
+                <div className="wl-id">
+                  <small>Suggested identification</small>
+                  <strong>Indian Peafowl</strong>
+                  <em>Pavo cristatus · Bird</em>
+                </div>
+                <div className="wl-evidence">
+                  <small>Visual evidence</small>
+                  {[
+                    ["Blue neck & breast", 88],
+                    ["Fan-shaped crest", 74],
+                    ["Eyespot train", 62],
+                  ].map(([clue, w]) => (
+                    <div key={clue as string}>
+                      <span>{clue}</span>
+                      <i style={{ width: `${w}%` }} />
+                    </div>
+                  ))}
+                </div>
+                <div className="wl-cards">
+                  <div>
+                    <small>Fact</small>
+                    <p>National bird of India; often seen near forest edges and farmland.</p>
+                  </div>
+                  <div>
+                    <small>Lookalike Detective</small>
+                    <p>Green Peafowl — green neck, upright crest.</p>
+                  </div>
+                  <div>
+                    <small>Observe next</small>
+                    <p>Check the crest shape and the colour of the neck feathers.</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <small>GAME_ENGINE_IMAGE_HERE</small>
+            <small>Illustrative preview</small>
           </div>
         </article>
       </section>
