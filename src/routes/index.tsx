@@ -127,6 +127,107 @@ const contributions = [
   "Dashboard implementation",
 ];
 
+const builtProjects: Array<{
+  title: string;
+  category: string;
+  status: string;
+  accent: "pulse" | "wild" | "ascent";
+  tagline?: string;
+  description: string;
+  tech: string[];
+  links: Array<[string, string]>;
+}> = [
+  {
+    title: "PulseTrust",
+    category: "IoT / Sensor trust / Full-stack",
+    status: "Prototype",
+    accent: "pulse",
+    description:
+      "An industrial sensor-trust prototype exploring sensor reliability and monitoring through connected hardware and a live dashboard — ESP32 data collection, a FastAPI backend, Supabase storage, and a React dashboard.",
+    tech: ["ESP32", "DS18B20", "MPU6050", "FastAPI", "Supabase", "React"],
+    links: [
+      ["GitHub", profile.pulseTrust.github],
+      ["Video demo", profile.pulseTrust.demo],
+    ],
+  },
+  {
+    title: "WildLens",
+    category: "AI / Computer vision / Nature",
+    status: "Hackathon project",
+    accent: "wild",
+    tagline: "Discover the wild. Understand what you see.",
+    description:
+      "Identifies birds, insects, and plants from photographs, then shows supporting visual evidence, compares lookalike species, and suggests what to observe next — exploring open-weight models and privacy-conscious inference.",
+    tech: ["Python", "FastAPI", "React", "Vite", "Ollama", "Open-weight vision", "ElevenLabs"],
+    links: isPlaceholder(profile.wildLens.github) ? [] : [["GitHub", profile.wildLens.github]],
+  },
+  {
+    title: "AscentOptima",
+    category: "Systems engineering / Optimization",
+    status: "Prototype",
+    accent: "ascent",
+    description:
+      "An elevator-optimization project exploring how dispatching and scheduling strategies can improve elevator allocation, passenger waiting times, and overall system efficiency.",
+    tech: [],
+    links: [],
+  },
+];
+
+function PulsePreview() {
+  const points = [30, 34, 31, 38, 36, 42, 40, 39, 45, 43, 47, 44];
+  const path = points.map((v, i) => `${i === 0 ? "M" : "L"}${i * 18} ${60 - v}`).join(" ");
+  return (
+    <div className="bp-pulse">
+      <div className="bp-pulse-chips">
+        <span>ESP32</span>
+        <span>DS18B20</span>
+        <span>MPU6050</span>
+      </div>
+      <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+        <path d={path} />
+      </svg>
+      <div className="bp-pulse-stats">
+        <div>
+          <small>Temp</small>
+          <b>--.- °C</b>
+        </div>
+        <div>
+          <small>Motion</small>
+          <b>x / y / z</b>
+        </div>
+        <div>
+          <small>Trust</small>
+          <b>score</b>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AscentPreview() {
+  const floors = [6, 5, 4, 3, 2, 1];
+  const cars = [4, 1, 6];
+  return (
+    <div className="bp-ascent">
+      <div className="bp-floors">
+        {floors.map((f) => (
+          <span key={f}>{f}</span>
+        ))}
+      </div>
+      {cars.map((pos, i) => (
+        <div key={i} className="bp-shaft">
+          <i style={{ bottom: `${((pos - 1) / 6) * 100}%` }} />
+        </div>
+      ))}
+      <div className="bp-dispatch">
+        <small>Dispatch queue</small>
+        <span>F3 ↑ → Car B</span>
+        <span>F5 ↓ → Car A</span>
+      </div>
+    </div>
+  );
+}
+
 function SmartLink({
   value,
   children,
@@ -642,35 +743,60 @@ function Portfolio() {
         </article>
       </section>
 
-      <section className="page-section next-section">
-        <SectionHeading index="04" eyebrow="In the queue" title="What’s next." />
-        <div className="next-list reveal">
-          {[
-            [
-              "01",
-              "Multiplayer game engine",
-              "Building",
-              "Networking, real-time systems, C++ architecture",
-            ],
-            [
-              "02",
-              "Applied AI experiments",
-              "Exploring",
-              "Small tools that make complex information more useful",
-            ],
-            [
-              "03",
-              "Computer science research",
-              "Planned",
-              "Finding a focused question worth investigating deeply",
-            ],
-          ].map(([num, name, status, detail]) => (
-            <div key={name}>
-              <span>{num}</span>
-              <h3>{name}</h3>
-              <p>{detail}</p>
-              <b>{status}</b>
-            </div>
+      <section className="page-section next-section built-section">
+        <SectionHeading
+          index="04"
+          eyebrow="Selected work / 2026"
+          title="Things I’ve built."
+          copy="A collection of experiments, engineering projects, and ideas turned into working prototypes."
+        />
+        <div className="built-grid reveal">
+          {builtProjects.map((project, i) => (
+            <article key={project.title} className={`built-card built-${project.accent}`}>
+              <div className="built-meta">
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <span>{project.category}</span>
+              </div>
+              <div className="built-preview" aria-hidden="true">
+                {project.accent === "pulse" && <PulsePreview />}
+                {project.accent === "wild" && (
+                  <div className="bp-wild">
+                    <img src={wildlensPhoto} alt="" loading="lazy" />
+                    <div className="bp-wild-tag">
+                      <small>Suggested ID</small>
+                      <b>Indian Peafowl</b>
+                      <i />
+                    </div>
+                  </div>
+                )}
+                {project.accent === "ascent" && <AscentPreview />}
+                <em>Illustrative preview</em>
+              </div>
+              <div className="built-body">
+                <div className="built-status">
+                  <span className="status-dot" /> {project.status}
+                </div>
+                <h3>{project.title}</h3>
+                {project.tagline && <p className="built-tagline">{project.tagline}</p>}
+                <p>{project.description}</p>
+                {project.tech.length > 0 && (
+                  <div className="tag-list">
+                    {project.tech.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+                )}
+                {project.links.length > 0 && (
+                  <div className="built-links">
+                    {project.links.map(([label, url]) => (
+                      <a key={label} href={url} target="_blank" rel="noopener noreferrer">
+                        {label} <ArrowUpRight />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </section>
