@@ -932,17 +932,19 @@ function Portfolio() {
           </div>
         </div>
         <div className="milestones reveal">
-          <p className="eyebrow">Verified milestones</p>
+          <p className="eyebrow">Beyond the code</p>
+          <h3 className="milestones-title">The Bigger Picture</h3>
           <div>
             {[
-              "Pursuing B.Tech CSE",
-              "Built PulseTrust_ with a team",
-              "Participated in BharatBuilds 2026",
-              "Building a C++ multiplayer game engine",
-            ].map((m, i) => (
-              <span key={m}>
+              ["Computer Science", "More than just code"],
+              ["Systems", "Curious about what runs underneath"],
+              ["Experiments", "Learning by building and breaking"],
+              ["The Long Game", "Small steps. Bigger ambitions."],
+            ].map(([label, text], i) => (
+              <span key={label}>
                 <b>0{i + 1}</b>
-                {m}
+                <em className="milestones-label">{label}</em>
+                {text}
               </span>
             ))}
           </div>
