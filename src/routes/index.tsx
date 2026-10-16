@@ -34,6 +34,8 @@ import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
 import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
 import { MilestoneCarousel } from "../components/MilestoneCarousel";
+
+const riptideSlides: { src: string; alt: string }[] = [];
 import { ArrowUpRight } from "lucide-react";
 import gdgCeremony from "../assets/gdg-award-ceremony.png.asset.json";
 import wildlensPhoto from "../assets/wildlens-peafowl.jpg";
@@ -875,12 +877,27 @@ function Portfolio() {
               View Proof <ArrowUpRight />
             </a>
           </article>
-          <article className="achievement-card is-verified">
+          <article className="achievement-card is-verified achievement-feature">
             <div className="achievement-top">
               <span className="achievement-index">02</span>
             </div>
-            <p className="eyebrow">Education</p>
-            <h3>Pursuing B.Tech CSE</h3>
+            <p className="eyebrow">Achievement</p>
+            {/* Add RIPTIDE photos here: { src: asset.url, alt: "..." } */}
+            {riptideSlides.length > 0 && <MilestoneCarousel slides={riptideSlides} />}
+            <h3>2nd Place — AWS Student Builder Group SRM-AP</h3>
+            <p>
+              <strong>RIPTIDE — 60-Minute Build Sprint.</strong> Secured 2nd place in RIPTIDE, a
+              60-minute build sprint organized by the AWS Student Builder Group at SRM-AP on 30
+              September 2026.
+            </p>
+            <a
+              className="milestone-proof"
+              href="https://www.linkedin.com/posts/awssbg-srm_riptide-our-60-minute-build-sprint-went-activity-7512047889284698113-tGKT"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Proof <ArrowUpRight />
+            </a>
           </article>
         </div>
       </section>
