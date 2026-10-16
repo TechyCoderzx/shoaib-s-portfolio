@@ -35,7 +35,19 @@ import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
 import { MilestoneCarousel } from "../components/MilestoneCarousel";
 
-const riptideSlides: { src: string; alt: string }[] = [];
+import riptideProject from "../assets/riptide-project.png.asset.json";
+import riptideAward from "../assets/riptide-award.jpeg.asset.json";
+
+const riptideSlides: { src: string; alt: string }[] = [
+  {
+    src: riptideProject.url,
+    alt: "Riptide — the search interface built during the 60-minute sprint",
+  },
+  {
+    src: riptideAward.url,
+    alt: "Riptide presented at the AWS Student Builder Group SRM-AP event",
+  },
+];
 import { ArrowUpRight } from "lucide-react";
 import gdgCeremony from "../assets/gdg-award-ceremony.png.asset.json";
 import wildlensPhoto from "../assets/wildlens-peafowl.jpg";
@@ -882,8 +894,7 @@ function Portfolio() {
               <span className="achievement-index">02</span>
             </div>
             <p className="eyebrow">Achievement</p>
-            {/* Add RIPTIDE photos here: { src: asset.url, alt: "..." } */}
-            {riptideSlides.length > 0 && <MilestoneCarousel slides={riptideSlides} />}
+            <MilestoneCarousel slides={riptideSlides} />
             <h3>2nd Place — AWS Student Builder Group SRM-AP</h3>
             <p>
               <strong>RIPTIDE — 60-Minute Build Sprint.</strong> Secured 2nd place in RIPTIDE, a
