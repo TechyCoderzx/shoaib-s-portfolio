@@ -1071,6 +1071,47 @@ a {
   color: var(--accent);
   margin-bottom: 22px;
 }
+.milestones span {
+  display: flex;
+  flex-direction: column;
+  color: var(--foreground);
+  font-size: clamp(0.9rem, 0.85rem + 0.25vi, 1rem);
+  line-height: 1.6;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.milestones span:hover {
+  background-color: color-mix(in oklab, var(--accent) 4%, transparent);
+}
+.milestones span:hover .milestones-label {
+  opacity: 1;
+}
+.milestones-label {
+  display: block;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+  margin-bottom: 10px;
+  transition: opacity 0.3s ease;
+}
+.milestones-title {
+  margin-top: 10px;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vi, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+@media (max-width: 520px) {
+  .milestones > div {
+    grid-template-columns: 1fr !important;
+  }
+  .milestones span {
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+}
 .achievements-grid.achievements-two {
   grid-template-columns: 2fr 1fr;
 }
