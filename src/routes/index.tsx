@@ -1,4 +1,6 @@
 import { GitHubActivity } from "@/components/GitHubActivity";
+import { Button } from "@/components/ui/button";
+import { WildLensCaseStudy, WildLensVisualization } from "@/components/WildLensCaseStudy";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDown,
@@ -173,7 +175,7 @@ const builtProjects: Array<{
     description:
       "Identifies birds, insects, and plants from photographs, then shows supporting visual evidence, compares lookalike species, and suggests what to observe next — exploring open-weight models and privacy-conscious inference.",
     tech: ["Python", "FastAPI", "React", "Vite", "Ollama", "Open-weight vision", "ElevenLabs"],
-    links: isPlaceholder(profile.wildLens.github) ? [] : [["GitHub", profile.wildLens.github]],
+    links: [],
   },
   {
     title: "AscentOptima",
@@ -312,6 +314,7 @@ function Portfolio() {
   const [active, setActive] = useState("Home");
   const [skillTab, setSkillTab] = useState("Languages");
   const [caseOpen, setCaseOpen] = useState(false);
+  const [wildLensCaseOpen, setWildLensCaseOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [formNotice, setFormNotice] = useState("");
 
@@ -690,61 +693,21 @@ function Portfolio() {
               <SmartLink value={profile.wildLens.github}>
                 <Github /> GitHub
               </SmartLink>
+              <Button
+                className="primary-button"
+                onClick={() => setWildLensCaseOpen((open) => !open)}
+                aria-expanded={wildLensCaseOpen}
+                aria-controls="wildlens-case-study"
+              >
+                Case study <ChevronDown className={wildLensCaseOpen ? "rotate" : ""} />
+              </Button>
             </div>
           </div>
-          <div className="engine-visual wildlens-visual" aria-label="Illustrative WildLens interface preview">
-            <div className="wl-app">
-              <div className="window-bar">
-                <i />
-                <i />
-                <i />
-                <span>wildlens / identify</span>
-              </div>
-              <div className="wl-photo">
-                <img src={wildlensPhoto} alt="Indian Peafowl perched on a branch" loading="lazy" />
-                <div className="wl-upload">
-                  <span>Upload photo</span>
-                  <span>Camera</span>
-                </div>
-              </div>
-              <div className="wl-result">
-                <div className="wl-id">
-                  <small>Suggested identification</small>
-                  <strong>Indian Peafowl</strong>
-                  <em>Pavo cristatus · Bird</em>
-                </div>
-                <div className="wl-evidence">
-                  <small>Visual evidence</small>
-                  {[
-                    ["Blue neck & breast", 88],
-                    ["Fan-shaped crest", 74],
-                    ["Eyespot train", 62],
-                  ].map(([clue, w]) => (
-                    <div key={clue as string}>
-                      <span>{clue}</span>
-                      <i style={{ width: `${w}%` }} />
-                    </div>
-                  ))}
-                </div>
-                <div className="wl-cards">
-                  <div>
-                    <small>Fact</small>
-                    <p>National bird of India; often seen near forest edges and farmland.</p>
-                  </div>
-                  <div>
-                    <small>Lookalike Detective</small>
-                    <p>Green Peafowl — green neck, upright crest.</p>
-                  </div>
-                  <div>
-                    <small>Observe next</small>
-                    <p>Check the crest shape and the colour of the neck feathers.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <small>Illustrative preview</small>
-          </div>
+          <WildLensVisualization />
         </article>
+        {wildLensCaseOpen && (
+          <WildLensCaseStudy onClose={() => setWildLensCaseOpen(false)} />
+        )}
       </section>
 
       <section className="page-section next-section built-section">
