@@ -31,7 +31,6 @@ import {
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import constellation from "../assets/neural-constellation.jpg";
 import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
-import pulseTrustPhoto from "../assets/pulsetrust-project.png.asset.json";
 import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
 import { MilestoneCarousel } from "../components/MilestoneCarousel";
@@ -521,12 +520,20 @@ function Portfolio() {
         <article className="featured-project reveal">
           <div className="project-visual placeholder-visual">
             <div className="visual-grid" />
-            <img
-              className="pulsetrust-project-photo"
-              src={pulseTrustPhoto.url}
-              alt="PulseTrust_ TrustTwin workspace showing the machine overview and digital twin"
-              loading="lazy"
-            />
+            <div className="monitor-panel">
+              <div>
+                <span className="status-dot" /> TELEMETRY_STREAM
+              </div>
+              <strong>TRUST / 0.––</strong>
+              <div className="signal-bars">
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+              </div>
+              <small>PULSETRUST_IMAGE_HERE</small>
+            </div>
           </div>
           <div className="project-body">
             <div className="project-number">PROJECT / 001</div>
@@ -624,14 +631,7 @@ function Portfolio() {
                 </div>
               </div>
               <div>
-                <span>06 — Demo</span>
-                <div className="media-placeholder">
-                  <Play />
-                  <p>PULSETRUST_VIDEO_HERE</p>
-                </div>
-              </div>
-              <div>
-                <span>07 — Repository</span>
+                <span>06 — Repository</span>
                 <p>
                   The project repository is shared by the team. Its verified URL will be added here.
                 </p>
