@@ -11,3 +11,4 @@
 - [x] Add the interactive hero constellation, lock dark mode, and validate accessible signature typography
 - [x] Add the Achievements section with placeholder entries and update the navigation order
 - [x] Restore the original PulseTrust technical visual and verify the Case Study without its demo section
+- [ ] Replace the main WildLens preview, add repository and expandable case study, and verify both projects remain independent
