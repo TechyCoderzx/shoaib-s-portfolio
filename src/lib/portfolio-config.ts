@@ -17,7 +17,7 @@ export const portfolioConfig = {
     demo: "https://www.youtube.com/watch?v=JskEbxxT7cM",
   },
   wildLens: {
-    github: "WILDLENS_GITHUB_URL",
+    github: "https://github.com/TechyCoderzx/wildlens",
   },
 } as const;
 
