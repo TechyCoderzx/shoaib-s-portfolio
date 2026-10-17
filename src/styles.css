@@ -573,16 +573,6 @@ a {
     inset 0 0 80px color-mix(in oklab, var(--primary) 15%, transparent),
     0 0 120px color-mix(in oklab, var(--primary) 10%, transparent);
 }
-.pulsetrust-project-photo {
-  position: relative;
-  z-index: 1;
-  width: min(78%, 510px);
-  height: clamp(20.98rem, calc(20.005rem + 4vi), 22.78rem);
-  display: block;
-  object-fit: cover;
-  object-position: center;
-  border: 1px solid var(--border);
-}
 .monitor-panel {
   position: relative;
   z-index: 1;
