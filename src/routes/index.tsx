@@ -31,6 +31,7 @@ import {
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import constellation from "../assets/neural-constellation.jpg";
 import portraitAsset from "../assets/shoaib-portrait.png.asset.json";
+import pulseTrustPhoto from "../assets/pulsetrust-project.png.asset.json";
 import { HeroConstellation } from "../components/HeroConstellation";
 import { ParticlePortrait } from "../components/ParticlePortrait";
 import { MilestoneCarousel } from "../components/MilestoneCarousel";
@@ -520,20 +521,12 @@ function Portfolio() {
         <article className="featured-project reveal">
           <div className="project-visual placeholder-visual">
             <div className="visual-grid" />
-            <div className="monitor-panel">
-              <div>
-                <span className="status-dot" /> TELEMETRY_STREAM
-              </div>
-              <strong>TRUST / 0.––</strong>
-              <div className="signal-bars">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-              <small>PULSETRUST_IMAGE_HERE</small>
-            </div>
+            <img
+              className="pulsetrust-project-photo"
+              src={pulseTrustPhoto.url}
+              alt="PulseTrust_ TrustTwin workspace showing the machine overview and digital twin"
+              loading="lazy"
+            />
           </div>
           <div className="project-body">
             <div className="project-number">PROJECT / 001</div>
@@ -557,9 +550,6 @@ function Portfolio() {
             <div className="project-actions">
               <SmartLink value={profile.pulseTrust.github}>
                 <Github /> GitHub
-              </SmartLink>
-              <SmartLink value={profile.pulseTrust.demo}>
-                <Play /> Video demo
               </SmartLink>
               <button
                 className="primary-button"
